@@ -8,17 +8,16 @@ By considering the terms in the Fibonacci sequence whose values do not exceed fo
 find the sum of the even-valued terms.
 *)
 
-
 let fibSeq =
     Seq.unfold (fun (a, b) -> Some(a + b, (b, a + b))) (1, 2)
 
 let isEven x = x % 2 = 0
 
-let sumOfEvenFibNumbersLessThanEqualFourMillion =
+let solution =
     fibSeq
     |> Seq.filter isEven
     |> Seq.takeWhile (fun x -> x <= 4000000)
     |> Seq.sum
 
 
-printfn "Sum of even valued fib numbers not exceeding four million is %A" sumOfEvenFibNumbersLessThanEqualFourMillion
+printfn "Sum of even valued fib numbers not exceeding four million is %A" solution

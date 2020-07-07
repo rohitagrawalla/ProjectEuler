@@ -8,7 +8,7 @@ Find the largest palindrome made from the product of two 3-digit numbers.
 
 open Utils
 
-let largestPalindomeProductOfTwo3DigitNumber =
+let solution =
     let isPalindrome n =
         let nStr = n.ToString()
         let nStrRev = nStr |> Seq.rev |> Seq.map string |> String.concat ""
@@ -21,4 +21,4 @@ let largestPalindomeProductOfTwo3DigitNumber =
 
     candidates |> Seq.filter isPalindrome |> Seq.max
 
-printfn "The largest palindrome made from the product of two 3-digit numbers is %A" largestPalindomeProductOfTwo3DigitNumber
+printfn "The largest palindrome made from the product of two 3-digit numbers is %A" solution
