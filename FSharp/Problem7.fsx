@@ -3,15 +3,10 @@ By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that 
 
 What is the 10001st prime number?
 *)
-
 #load "./Utils.fsx"
 
 open Utils.Math
 
-
-let solution =
-    primes
-    |> Seq.item 10000
-
+let solution = primes |> Seq.item 10000
 
 printfn "10001st Prime number is %A" solution
