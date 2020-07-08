@@ -43,10 +43,21 @@ module Math =
         xs
         |> List.fold (fun x y -> (lcm x y)) 1
 
-    let isPrime n =
+    let isPrimeNew factors n =
         let nsqrt = n |> float |> System.Math.Sqrt |> int
-        noneOf (fun x -> n % x = 0) [2..nsqrt]
+        let candidateFactors = factors |> Seq.takeWhile (fun x -> x <= nsqrt)
+        noneOf (fun x -> n % x = 0) candidateFactors
 
-    let primes =
-        Seq.unfold (fun i -> Some (i, i + 1)) 2
-        |> Seq.filter isPrime
+    let primesNew =
+        seq {
+            let mutable seenPrimes = ResizeArray<int>()
+            do seenPrimes.Add(2)
+            yield 2
+            let candidates = Seq.unfold (fun i -> Some (i, i + 2)) 3
+            for c in candidates do
+                let r = isPrimeNew seenPrimes c
+                if r then
+                    seenPrimes.Add(c)
+                    yield c
+        }
+        
